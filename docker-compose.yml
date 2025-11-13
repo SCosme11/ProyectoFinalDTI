@@ -6,7 +6,7 @@ services:
     depends_on:
       - db    #this line links this container to the db container
     volumes:
-      - ./html:/var/www/html    #this line maps the content of ./html in your pc to the /var/www/html of the container
+      - ./:/var/www/html    #this line maps the content of ./in your pc to the /var/www/html of the container
   db:
     image: mysql:8.1.0    #check the mysql version you need for your project
     environment:
