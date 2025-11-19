@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
                 </div>
                 <div class="mb-3">
                     <label for="tarjeta" class="form-label">Número Tarjeta</label>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección de Envío</label>
-                    <textarea class="form-control" id="direccion" name="direccion" rows="3"></textarea>
+                    <textarea class="form-control" id="direccion" name="direccion" rows="3" required></textarea>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Registrarme</button>
