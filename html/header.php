@@ -42,9 +42,11 @@
             </ul>
 
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/html/carrito.php"><i class="bi bi-cart-fill"></i> Carrito (0)</a></li>
-                
                 <?php if(isset($_SESSION['usuario_id'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/carrito.php"><i class="bi bi-cart-fill"></i> Carrito</a>
+                    </li>
+        
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle"></i> Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>
