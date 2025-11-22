@@ -24,7 +24,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-1">
     <div class="container">
-        <a class="navbar-brand" href="/index.php"><img src="/img/Logo.png" alt="Cosmos" height="85"></a>
+        <a class="navbar-brand" href="/index.php"><img src="/img/Logo.png" alt="Cosmos" height="80"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#miNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>

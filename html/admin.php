@@ -16,11 +16,11 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
     <div class="accordion" id="adminAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
                     Inventario (Reporte de Productos)
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show">
+            <div id="collapseOne" class="accordion-collapse collapse">
                 <div class="accordion-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -124,7 +124,61 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    Historial de todas las compras...
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>ID Venta</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Producto Vendido</th>
+                                    <th>Precio de Venta</th>
+                                    <th>Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $sql_hist = "SELECT h.ID_Historial, h.Fecha_Compra, u.Nombre as Cliente, u.Correo,
+                                                 p.Nombre as Producto, p.Precio, p.Imagen
+                                                 FROM Historial h
+                                                 JOIN Usuarios u ON h.Usuario = u.ID_Usuario
+                                                 JOIN Productos p ON h.Producto = p.ID_Producto
+                                                 ORDER BY h.Fecha_Compra DESC";
+                                    
+                                    $res_hist = mysqli_query($conn, $sql_hist);
+
+                                    if(mysqli_num_rows($res_hist) > 0){
+                                      while($venta = mysqli_fetch_assoc($res_hist)){
+                                            echo "<tr>";
+                                            echo "<td class='fw-bold'>#".$venta['ID_Historial']."</td>";
+                                            $fecha_obj = new DateTime($venta['Fecha_Compra'], new DateTimeZone('UTC'));
+                                            $fecha_obj->setTimezone(new DateTimeZone('America/Mexico_City'));
+                                            $fecha = $fecha_obj->format('d/m/Y H:i');
+                                            echo "<td>".$fecha."</td>";
+                                            echo "<td>";
+                                            echo "<span class='fw-bold'>".htmlspecialchars($venta['Cliente'])."</span><br>";
+                                            echo "<small class='text-muted'>".htmlspecialchars($venta['Correo'])."</small>";
+                                            echo "</td>";
+                                            echo "<td>".htmlspecialchars($venta['Producto'])."</td>";
+                                            echo "<td class='text-success fw-bold'>$".number_format($venta['Precio'], 2)."</td>";
+                                            
+                                            echo "<td>";
+                                            if(!empty($venta['Imagen'])){
+                                                $img_b64 = base64_encode($venta['Imagen']);
+                                                echo '<img src="data:image/jpeg;base64,' . $img_b64 . '" width="50" height="50" style="object-fit:cover;" class="rounded">';
+                                            } else {
+                                                echo "<span class='text-muted small'>Sin img</span>";
+                                            }
+                                            echo "</td>";
+                                            echo "</tr>";
+                                        }  
+                                    } else {
+                                        echo "<tr><td colspan='5' class='text-center py-3'>Aún no se han realizado ventas.</td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
