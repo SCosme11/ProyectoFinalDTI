@@ -68,7 +68,7 @@ $resultado = mysqli_query($conn, $sql);
                     $<?php echo number_format($row['Precio'], 2); ?> MXN
                   </p>
                   <div class="d-grid gap-2">
-                    <button class="btn btn-outline-primary">Ver detalles</button>
+                    <a href="html/detalle_producto.php?id=<?php echo $row['ID_Producto']; ?>" class="btn btn-outline-primary">Ver Detalles</a>
                     <form action="html/agregar_carrito.php" method="POST">
                       <input type="hidden" name="id_producto" value="<?php echo $row['ID_Producto']; ?>">
                       <button type="submit" class="btn btn-primary w-100">Añadir al carrito</button>
@@ -84,7 +84,7 @@ $resultado = mysqli_query($conn, $sql);
       echo "<div class='col-12'><div class='alert alert-warning'>No hay productos disponibles en este momento</div></div>";
     }
     ?>
-  
+  </div>
   <nav aria-label="Navegación de productos" class="mt-5">
     <ul class="pagination justify-content-center">
       <li class="page-item <?php if($pagina_actual <= 1){ echo 'disabled'; } ?>">

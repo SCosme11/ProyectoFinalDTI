@@ -14,19 +14,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="/css/index.css"
+
+    <!--Fuentes título -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-1">
     <div class="container">
-        <a class="navbar-brand" href="/index.php">Cosmos</a>
+        <a class="navbar-brand" href="/index.php"><img src="/img/Logo.png" alt="Cosmos" height="85"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#miNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="miNavbar">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="/index.php">Inicio (Catálogo)</a></li>
+                <li class="nav-item"><a class="nav-link" href="/index.php">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="/html/contacto.php">Contacto</a></li>
 
                 <?php
