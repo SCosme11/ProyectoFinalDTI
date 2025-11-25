@@ -44,7 +44,7 @@ if(mysqli_num_rows($resultado_resumen) > 0) {
         mysqli_stmt_bind_param($stmt_del, "i", $id_usuario);
         mysqli_stmt_execute($stmt_del);
 
-        echo "<script>alert('¡Compra procesada con éxito! El inventario ha sido actualizado.'); window.location.href='/index.php';</script>";
+        echo "<script>alert('¡Compra procesada con éxito!'); window.location.href='/index.php';</script>";
     } else {
         echo "Error al guardar historial: ".mysqli_error($conn);
     }
