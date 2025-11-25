@@ -34,6 +34,7 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
                                     <th>Cantidad</th>
                                     <th>Fabricante</th>
                                     <th>Origen</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,6 +60,20 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
                                             echo "<td class='text-center align-middle'>".$row['Cantidad']."</td>";
                                             echo "<td class='text-center align-middle'>".$row['Fabricante']."</td>";
                                             echo "<td class='text-center align-middle'>".$row['Origen']."</td>";
+
+                                            echo "<td class='text-center align-middle'>";
+                                            echo "<div class='d-flex gap-2 justify-content-center'>";
+                                            //Botón de editar
+                                            echo "<a href='editar_producto.php?id=".$row['ID_Producto']."' class='btn btn-warning btn-sm' title='Editar'>";
+                                            echo "<i class='bi bi-pencil-square'></i>";
+                                            echo "</a>";
+                                            //Botón para eliminar
+                                            echo "<a href='eliminar_producto.php?id=".$row['ID_Producto']."' class='btn btn-danger btn-sm' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este producto?\");' title='Eliminar'>";
+                                            echo "<i class='bi bi-trash-fill'></i>";
+                                            echo "</a>";
+                                            echo "</div>";
+                                            echo "</td>";
+
                                             echo "</tr>";
                                         }
                                     } else {
