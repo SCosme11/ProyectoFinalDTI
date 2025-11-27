@@ -1,28 +1,26 @@
 </main>
-<footer class="text-center text-lg-start mt-auto">
-    <div class="container p-4">
-        <div class="Row">
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase text-white">Cosmos</h5>
-                <p>
-                   Somos especialistas en astronomía amateur. Encuentra desde tu primer telescopio hasta equipos de astrofotografía avanzada. 
-                </p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase text-white">Suscríbete</h5>
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Tu email" aria-label="Email">
-                    <button class="btn btn-primary" type="button">Enviar</button>
-                </div>
-            </div>
+<footer class="text-center mt-auto">
+    <div class="container">
+        
+        <h5 class="text-uppercase text-white" style="letter-spacing: 2px;">Cosmos</h5>
+        
+        <div class="d-flex justify-content-center">
+            <p class="px-md-5" style="max-width: 900px; line-height: 1.8;">
+                En <strong>Cosmos</strong>, creemos que el universo debe estar al alcance de todos. 
+                Más que una tienda, somos tu puente hacia las estrellas. Desde tu primera vista de los anillos de Saturno 
+                hasta la captura de galaxias lejanas, te acompañamos con el mejor equipamiento óptico y asesoría experta. 
+            </p>
         </div>
+
     </div>
-    <div class="text-center p-4">
-        © 2025 Copyright: Cosmos
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);">
+        © 2025 Copyright: <strong>COSMOS</strong>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
