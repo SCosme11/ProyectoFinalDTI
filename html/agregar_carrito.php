@@ -1,9 +1,10 @@
 <?php 
-session_start();
 include 'db.php';
 
 if(!isset($_SESSION['usuario_id'])){
-    echo "<script>alert('Debes iniciar sesión para comprar.'); window.location.href='login.php';</script>";
+    $_SESSION['mensaje_texto'] = "Debes iniciar sesión para comprar";
+    $_SESSION['mensaje_tipo'] = "danger";
+    header("Location: login.php");
     exit;
 }
 
@@ -41,10 +42,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $disponibles_para_agregar = $stock_maximo - $ya_en_carrito;
         if($disponibles_para_agregar < 0) $disponibles_para_agregar = 0;
 
-        echo "<script>
-            alert('Stock insuficiente para \"$nombre_prod\".\\nTotal en inventario: $stock_maximo.\\nYa tienes: $ya_en_carrito en el carrito.\\nSolo puedes agregar $disponibles_para_agregar más.'); 
-            window.history.back();
-        </script>";
+        $_SESSION['mensaje_texto'] = "Stock insuficiente. Solo puedes agregar $disponibles_para_agregar unidades más de este producto.";
+        $_SESSION['mensaje_tipo'] = "warning";
+
+        header("Location: detalle_producto.php?id=".$id_producto);
         exit; 
     }
 
@@ -61,9 +62,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if($exito){
+        $_SESSION['mensaje_texto'] = "Producto añadido al carrito";
+        $_SESSION['mensaje_tipo'] = "success";
         header("Location: carrito.php");
     } else {
-        echo "Error al agregar al carrito: ".mysqli_error($conn);
+        $_SESSION['mensaje_texto'] = "Error al agregar carrito.";
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: detalle_producto.php?id=".$id_producto);
     }
 
     mysqli_stmt_close($stmt);

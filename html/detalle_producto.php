@@ -3,7 +3,9 @@ include 'header.php';
 include 'db.php';
 
 if(!isset($_GET['id'])){
-    echo "<script>alert('Producto no especificado'); window.location.href='/index.php';</script>";
+    $_SESSION['mensaje_texto'] = "Producto no especificado.";
+    $_SESSION['mensaje_tipo'] = "danger";
+    header("Location: /index.php");
     exit;
 }
 
@@ -71,7 +73,9 @@ if($row = mysqli_fetch_assoc($resultado)){
 
 <?php 
 } else {
-    echo "<div class='container my-5'><div class='alert alert-danger'>El producto no existe.</div></div>";
+    $_SESSION['mensaje_texto'] = "El producto que buscas no existe.";
+    $_SESSION['mensaje_tipo'] = "danger";
+    header("Location: /index.php");
 }
 
 include 'footer.php'; 

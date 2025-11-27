@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 include 'db.php';
+session_start();
 
 if(!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true){
     echo "<script>window.location.href=/index.php;</script>";
@@ -41,9 +42,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if(mysqli_stmt_execute($stmt)){
-        echo "<script>alert('Producto actualizado correctamente'); window.location.href='admin.php';</script>";
+        $_SESSION['mensaje_texto'] = "Producto actualizado correctamente";
+        $_SESSION['mensaje_tipo'] = "success";
+        header("Location: admin.php");
     } else {
-        echo "<div class='alert alert-danger'>Error al actualizar: ".mysqli_error($conn)."</div>";
+        $_SESSION['mensaje_texto'] = "Error al actualizar: " . mysqli_error($conn);
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: admin.php");
     }
 }
 

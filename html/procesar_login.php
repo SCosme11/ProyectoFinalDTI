@@ -30,11 +30,17 @@ if($row = mysqli_fetch_assoc($resultado)) {
         header("Location: /index.php");
         exit();
     } else {
-        echo "<script>alert('Contraseña incorrecta'); window.location.href='login.php';</script>";
+        $_SESSION['mensaje_texto'] = "Contraseña incorrecta.";
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: login.php");
+        exit();
     }
 } else {
     //No se encontró al usuario
-    echo "<script>alert('El correo no está registrado'); window.location.href='login.php';</script>";
+    $_SESSION['mensaje_texto'] = "El correo ingresado no está registrado.";
+    $_SESSION['mensaje_tipo'] = "warning";
+    header("Location: login.php");
+    exit();
 }
 
 mysqli_close($conn);

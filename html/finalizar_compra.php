@@ -44,13 +44,20 @@ if(mysqli_num_rows($resultado_resumen) > 0) {
         mysqli_stmt_bind_param($stmt_del, "i", $id_usuario);
         mysqli_stmt_execute($stmt_del);
 
-        echo "<script>alert('¡Compra procesada con éxito!'); window.location.href='/index.php';</script>";
+        $_SESSION['mensaje_texto'] = "¡Compra procesada con éxito";
+        $_SESSION['mensaje_tipo'] = "success";
+        header("Location: carrito.php");
     } else {
-        echo "Error al guardar historial: ".mysqli_error($conn);
+        $_SESSION['mensaje_texto'] = "Error al procesar la compra";
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: carrito.php");
     }
 
 } else {
     echo "<script>alert('Tu carrito está vacío.'); window.location.href='/index.php';</script>";
+    $_SESSION['mensaje_texto'] = "Tu carrito está vacio";
+    $_SESSION['mensaje_tipo'] = "info";
+    header("Location: carrito.php");
 }
 
 mysqli_close($conn);

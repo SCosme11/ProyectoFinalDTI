@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nombre = $_POST['nombre'];
@@ -25,15 +26,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         mysqli_stmt_bind_param($stmt, "sssdiss", $nombre, $descripcion, $imagen_contenido, $precio, $cantidad, $fabricante, $origen);
 
         if(mysqli_stmt_execute($stmt)){
-            echo "<script>alert('Producto agregado exitosamente'); window.location.href='admin.php';</script>";
+            $_SESSION['mensaje_texto'] = "Producto agregado exitosamente";
+            $_SESSION['mensaje_tipo'] = "success";
+            header("Location: admin.php");
         } else {
-            echo "Error en BD: ".mysqli_error($conn);
+            $_SESSION['mensaje_texto'] = "Error en base de datos: " . mysqli_error($conn);
+            $_SESSION['mensaje_tipo'] = "danger";
+            header("Location: admin.php");
         }
 
         mysqli_stmt_close($stmt);
         
     } else {
-        echo "<script>alert('Error: Debes seleccionar una imagen válida.'); window.location.href='admin.php';</script>";
+        $_SESSION['mensaje_texto'] = "Debes seleccionar una imagen válida";
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: admin.php");
     }
 }
 ?>

@@ -66,4 +66,27 @@
     </div>
 </nav>
 
-<main> 
+</nav>
+
+<?php if(isset($_SESSION['mensaje_texto'])): ?>
+<div class="container mt-4">
+    <div class="alert alert-<?php echo $_SESSION['mensaje_tipo']; ?> alert-dismissible fade show shadow-sm" role="alert">
+        <?php 
+            // Iconos dinámicos según el tipo de mensaje
+            if($_SESSION['mensaje_tipo'] == 'danger') echo '<i class="bi bi-exclamation-triangle-fill me-2"></i>';
+            elseif($_SESSION['mensaje_tipo'] == 'success') echo '<i class="bi bi-check-circle-fill me-2"></i>';
+            elseif($_SESSION['mensaje_tipo'] == 'warning') echo '<i class="bi bi-exclamation-circle-fill me-2"></i>';
+            else echo '<i class="bi bi-info-circle-fill me-2"></i>';
+            
+            echo $_SESSION['mensaje_texto']; 
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+<?php 
+    // Limpiamos las variables para que la alerta no aparezca de nuevo al recargar
+    unset($_SESSION['mensaje_texto']);
+    unset($_SESSION['mensaje_tipo']);
+?>
+<?php endif; ?>
+<main>

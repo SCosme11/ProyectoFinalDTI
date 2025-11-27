@@ -25,10 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Si quiere más de lo que existe
     if ($cantidad_deseada > $stock_real) {
-        echo "<script>
-            alert('No puedes tener $cantidad_deseada unidades. Solo hay $stock_real disponibles en inventario.'); 
-            window.location.href='carrito.php';
-        </script>";
+        $_SESSION['mensaje_texto'] = "No puedes tener $cantidad_deseada unidades. Solo hay $stock_real disponibles en inventario";
+        $_SESSION['mensaje_tipo'] = "danger";
+        header("Location: carrito.php");
         exit;
     }
 

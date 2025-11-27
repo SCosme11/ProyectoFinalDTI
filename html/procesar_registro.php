@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db.php';
 
 $nombre = $_POST['nombre'];
@@ -19,9 +20,13 @@ $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "ssssss", $nombre, $correo, $password_hashed, $fecha_nacimiento, $tarjeta, $direccion);
 
 if (mysqli_stmt_execute($stmt)) {
-    echo "<script>alert('Cuenta creada con éxito. Por favor inicia sesión.'); window.location.href='login.php'; </script>";
+    $_SESSION['mensaje_texto'] = "Cuenta creada con éxito. Por favor inicia sesión.";
+    $_SESSION['mensaje_tipo'] = "success";
+    header("Location: login.php");
 } else {
-    echo "Error ".mysqli_error($conn);
+    $_SESSION['mensaje_texto'] = "Error al registrar: ". mysqli_error($conn);
+    $_SESSION['mensaje_tipo'] = "danger";
+    header("Location: registro.php");
 }
 
 mysqli_close($conn);
