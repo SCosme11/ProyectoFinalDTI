@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+session_start();
 include 'db.php';
 
 if(!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true){
@@ -43,13 +43,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(mysqli_stmt_execute($stmt)){
         $_SESSION['mensaje_texto'] = "Producto actualizado correctamente";
         $_SESSION['mensaje_tipo'] = "success";
+        session_write_close();
         header("Location: admin.php");
+        exit;
     } else {
         $_SESSION['mensaje_texto'] = "Error al actualizar: " . mysqli_error($conn);
         $_SESSION['mensaje_tipo'] = "danger";
+        session_write_close();
         header("Location: admin.php");
+        exit;
     }
 }
+
+include 'header.php';
 
 $sql_get = "SELECT * FROM Productos WHERE ID_Producto = ?";
 $stmt_get = mysqli_prepare($conn, $sql_get);

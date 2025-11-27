@@ -68,7 +68,7 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
                                             echo "<i class='bi bi-pencil-square'></i>";
                                             echo "</a>";
                                             //Botón para eliminar
-                                            echo "<a href='eliminar_producto.php?id=".$row['ID_Producto']."' class='btn btn-danger btn-sm' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este producto?\");' title='Eliminar'>";
+                                            echo "<a href='javascript:void(0);' class='btn btn-danger btn-sm' onclick='confirmarEliminacion(".$row['ID_Producto'].")' title='Eliminar'>";
                                             echo "<i class='bi bi-trash-fill'></i>";
                                             echo "</a>";
                                             echo "</div>";
@@ -199,5 +199,23 @@ if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true) {
         </div>
     </div>
 </div>
-
+<script>
+function confirmarEliminacion(id) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esta acción y el producto se borrará permanentemente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario confirma, redirigimos manualmente
+            window.location.href = 'eliminar_producto.php?id=' + id;
+        }
+    })
+}
+</script>
 <?php include 'footer.php'; ?>
