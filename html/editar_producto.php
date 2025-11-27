@@ -1,7 +1,6 @@
 <?php
 include 'header.php';
 include 'db.php';
-session_start();
 
 if(!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] !== true){
     echo "<script>window.location.href=/index.php;</script>";

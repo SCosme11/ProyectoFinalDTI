@@ -1,4 +1,6 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+?>
 
 <div class="container my-5">
     <div class="row">
