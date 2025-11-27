@@ -83,7 +83,9 @@ $total_compra = 0;
                     <span class="text-muted small">Unitario: $<?php echo number_format($row['Precio'], 2); ?></span>
                     <span class="price-tag fs-5 my-2 text-primary fw-bold">$<?php echo number_format($subtotal, 2); ?></span>
                     
-                    <a href="carrito.php?eliminar_todo=<?php echo $row['ID_Producto']; ?>" class="btn btn-danger btn-sm mt-2" onclick="return confirm('¿Seguro que quieres eliminar este producto?')">
+                    <a href="#" 
+                        onclick="confirmarEliminar(event, 'carrito.php?eliminar_todo=<?php echo $row['ID_Producto']; ?>')" 
+                        class="btn btn-danger btn-sm mt-2">
                         <i class="bi bi-trash"></i> Eliminar
                     </a>
                 </div>
@@ -109,5 +111,24 @@ $total_compra = 0;
 
     <?php endif; ?>
 </div>
+<script>
+function confirmarEliminar(event, url) {
+    event.preventDefault(); // Evita que el link actúe inmediatamente
 
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esto y el producto se eliminará del carrito.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url; // Redirige si el usuario confirma
+        }
+    })
+}
+</script>
 <?php include 'footer.php'; ?>

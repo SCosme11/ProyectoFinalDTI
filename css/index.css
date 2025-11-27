@@ -65,5 +65,5 @@
     letter-spacing: 4px;
     text-transform: uppercase; 
     text-shadow: 0 0 10px rgba(13, 110, 253, 0.7), 0 0 20px rgba(13, 110, 253, 0.5);
-    font-size: 120px;
+    font-size: clamp(3rem, 10vw, 120px); /*para que se ajuste al tamaño del celular*/
 }

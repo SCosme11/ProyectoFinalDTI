@@ -44,7 +44,7 @@ if(mysqli_num_rows($resultado_resumen) > 0) {
         mysqli_stmt_bind_param($stmt_del, "i", $id_usuario);
         mysqli_stmt_execute($stmt_del);
 
-        $_SESSION['mensaje_texto'] = "¡Compra procesada con éxito";
+        $_SESSION['mensaje_texto'] = "¡Compra procesada con éxito!";
         $_SESSION['mensaje_tipo'] = "success";
         header("Location: carrito.php");
     } else {
