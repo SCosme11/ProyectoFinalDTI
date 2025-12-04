@@ -1,7 +1,3 @@
-Aquí tienes una propuesta completa para el archivo `README.md` de tu proyecto, estructurada profesionalmente y basada en el código analizado.
-
------
-
 # Cosmos - E-commerce de Astronomía
 
 **Cosmos** es una plataforma de comercio electrónico dedicada a la venta de equipos ópticos y telescopios para astronomía amateur. El proyecto permite a los usuarios explorar un catálogo, gestionar un carrito de compras y realizar pedidos, mientras ofrece a los administradores herramientas para gestionar el inventario y las ventas.
